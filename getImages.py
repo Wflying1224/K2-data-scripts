@@ -20,6 +20,8 @@ def submit_job(fullfilename,x1,y1,x2,y2,bin):
 
 def main():
     """ This is the main program you will run. """
+    if not os.path.exists('tiff'):
+        os.makedirs('tiff')
     remove_directory_spaces('.')
     with open('parameters.txt') as f:
         x1 = int(f.readline().strip().split()[0])
