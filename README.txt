@@ -23,7 +23,7 @@ Further Notes:
 You will need to untar (`tar xjvf`) and compile the code in quocmesh-20140902-1202.tar.bz2. There are basic compiling instructions in the README.txt inside the tarball.
 (The 'make' command takes about 10 minutes but everything else is fast).
 
-Once compiled, copy libquocmesh.so from 'quocGCC/libquocmesh.so' into your cwd, overwriting the one that was downloaded in the repository.
+Once compiled, copy (or link) libquocmesh.so from 'quocGCC/libquocmesh.so' into a path in your LD_LIBRARY_PATH.
 In addition, you need the executable 'convertDM3ToQuoc' which was created during compilation. The file is located in 'quocGCC/tools/image/converter/'.
-You must move, copy, or link this file to a path accessible via your PATH environment variable; or you can link it into your cwd.
+You must again move, copy, or link this file to a path accessible via your PATH environment variable.
 These two files (libquocmesh.so and convertDM3ToQuoc) are needed by getImages.py and its subfiles.
