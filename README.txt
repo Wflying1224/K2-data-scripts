@@ -20,7 +20,7 @@
       need to manually delete the partially-written file so that it will be overwritten on the next run.
 
 Further Notes:
-You will need to untar and compile the code in quocmesh-20140902-1202.tar.bz2. There are basic compiling instructions in the README.txt inside the tarball.
+You will need to untar (`tar xjvf`) and compile the code in quocmesh-20140902-1202.tar.bz2. There are basic compiling instructions in the README.txt inside the tarball.
 (The 'make' command takes about 10 minutes but everything else is fast).
 
 Once compiled, copy libquocmesh.so from 'quocGCC/libquocmesh.so' into your cwd, overwriting the one that was downloaded in the repository.
