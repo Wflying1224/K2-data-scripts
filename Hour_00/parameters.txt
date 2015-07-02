@@ -1,0 +1,5 @@
+452  # x1, the top left X crop value
+404  # y1, the top left Y crop value
+1472 # x2, the bottom right X crop value
+1424 # y2, the bottom right Y crop value
+10   # bin, the BIN level you would like performed

@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/peizhang/Hour_00/K2-data-scripts/quocmesh-20140902-1202/quocmesh/modules/aol/qmException.h
+string
+-
+iostream
+-
+sstream
+-
+
+/home/peizhang/Hour_00/K2-data-scripts/quocmesh-20140902-1202/quocmesh/selfTest/aol/exceptionTest.cpp
+qmException.h
+-
+

@@ -1,0 +1,1 @@
+/usr/bin/c++    -Wold-style-cast -Woverloaded-virtual -Wnon-virtual-dtor -O3 -DNDEBUG -Wdisabled-optimization -funroll-loops -march=native    CMakeFiles/projects_electronMicroscopy_calcIQ.dir/calcIQ.cpp.o  -o calcIQ -rdynamic -ldl -lbz2 -lpng -lz ../../libquocmesh.so -ldl -lbz2 -lpng -lz -Wl,-rpath,/home/peizhang/Hour_00/K2-data-scripts/quocmesh-20140902-1202/quocGCC 

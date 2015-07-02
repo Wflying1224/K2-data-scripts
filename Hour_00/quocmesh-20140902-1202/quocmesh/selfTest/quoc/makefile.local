@@ -1,0 +1,9 @@
+test:
+	@$(QUOCPATH)/util/runtest.sh $(QUOCPATH) $(PROJECT) sparsetest
+	@$(QUOCPATH)/util/runtest.sh $(QUOCPATH) $(PROJECT) simplexSelfTest
+	@$(QUOCPATH)/util/runtest.sh $(QUOCPATH) $(PROJECT) selfTest
+
+valgrindtest:
+	valgrind --leak-check=full --show-reachable=yes ./sparsetest
+	valgrind --leak-check=full --show-reachable=yes ./simplexSelfTest
+	valgrind --leak-check=full --show-reachable=yes ./selfTest

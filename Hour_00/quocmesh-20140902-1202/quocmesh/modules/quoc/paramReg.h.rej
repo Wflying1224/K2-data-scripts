@@ -1,0 +1,33 @@
+--- paramReg.h
++++ paramReg.h
+@@ -577,5 +577,6 @@
+                               const aol::Vector<typename ConfiguratorType::RealType> &ImR,
+                               const aol::Vector<typename ConfiguratorType::RealType> &ImT,
+                               aol::MultiVector<typename ConfiguratorType::RealType> &DeformParameters,
+-                              const int MaxGradientDescentSteps = 1000 ) {
++                              const int MaxGradientDescentSteps = 1000,
++                              const typename ConfiguratorType::RealType PenaltyWeight = 0 ) {
+   typedef typename ConfiguratorType::RealType RealType;
+@@ -581,7 +582,19 @@
+   typedef typename ConfiguratorType::RealType RealType;
+-  ParametricEnergyType E ( Grid, ImR, ImT );
+-  aol::DerivativeWrapper<RealType, ParametricEnergyType, aol::MultiVector<RealType> > DE ( E );
+-  return updateDeformParameters<ConfiguratorType> ( Grid, E, DE, DeformParameters, MaxGradientDescentSteps );
++  aol::LinCombOp<aol::MultiVector<RealType>, aol::Scalar<RealType> > E;
++  ParametricEnergyType dataE ( Grid, ImR, ImT );
++  aol::DerivativeWrapper<RealType, ParametricEnergyType, aol::MultiVector<RealType> > dataDE( dataE );
++  if ( PenaltyWeight <= 0 )
++    return updateDeformParameters<ConfiguratorType> ( Grid, dataE, dataDE, DeformParameters, MaxGradientDescentSteps );
++  else {
++    aol::IdentityOp<aol::MultiVector<RealType> > identity;
++    aol::QuadraticFormOp<aol::MultiVector<RealType> > regE ( identity );
++    E.appendReference ( dataE );
++    E.appendReference ( regE, PenaltyWeight );
++    aol::LinCombOp<aol::MultiVector<RealType> > DE;
++    DE.appendReference ( dataDE );
++    DE.appendReference ( identity, PenaltyWeight );
++    return updateDeformParameters<ConfiguratorType> ( Grid, E, DE, DeformParameters, MaxGradientDescentSteps );
++  }
+ }
+ 
+ /**

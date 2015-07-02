@@ -1,0 +1,7 @@
+test:
+	@$(QUOCPATH)/util/runtest.sh $(QUOCPATH) $(PROJECT) exceptionTest './exceptionTest 2>&1 | grep "file exceptionTest.cpp" | diff - exceptionTest.txt'
+	@$(QUOCPATH)/util/runtest.sh $(QUOCPATH) $(PROJECT) selfTest
+
+valgrindtest:
+	valgrind --leak-check=full --show-reachable=yes ./exceptionTest
+	valgrind --leak-check=full --show-reachable=yes ./selfTest
