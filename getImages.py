@@ -7,7 +7,7 @@ def remove_directory_spaces(path):
     fixed = True
     while(fixed):
         fixed = False
-        for dirpath, dirnames, filenames in os.walk('.'):
+        for dirpath, dirnames, filenames in os.walk(path):
             if(' ' in dirpath):
                 os.rename(dirpath,dirpath.replace(' ','_'))
                 print("Renamed directory {0} to {1}".format(dirpath,dirpath.replace(' ','_')))
@@ -20,16 +20,15 @@ def submit_job(fullfilename,x1,y1,x2,y2,bin):
 
 def main():
     """ This is the main program you will run. """
-    if not os.path.exists('tiff'):
-        os.makedirs('tiff')
-    remove_directory_spaces('.')
+    path = sys.argv[1]
+    remove_directory_spaces(path)
     with open('parameters.txt') as f:
         x1 = int(f.readline().strip().split()[0])
         y1 = int(f.readline().strip().split()[0])
         x2 = int(f.readline().strip().split()[0])
         y2 = int(f.readline().strip().split()[0])
         bin = int(f.readline().strip().split()[0])
-    for dirpath, dirnames, filenames in os.walk('.'):
+    for dirpath, dirnames, filenames in os.walk(path):
         for f in filenames:
             if('.dm4' in f):
                 fullfilename = os.path.join(dirpath,f)
