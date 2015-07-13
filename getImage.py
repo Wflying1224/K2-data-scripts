@@ -34,12 +34,12 @@ def dm4_to_tiff(fullfilename,x1,y1,x2,y2,bin):
         filebasename = filebasename.replace(' ','_')
     basename = f[:-4]
     # Convert from .dm4 to .q2bz
-    if(not os.path.isfile(basename+'.q2bz') and not os.path.isfile('tiff/{0}.tiff'.format(filebasename))):
+    if(not os.path.isfile(basename+'.q2bz') and not os.path.isfile('{0}/tiff/{1}.tiff'.format(tiff_path, filebasename))):
         print('Converting {0} to .q2bz...'.format(f))
         run_subproc("./convertDM3ToQuoc " + f)
         shutil.move(filebasename+'.q2bz',basename+'.q2bz')
     else:
-        print('{0}.q2bz already exists!'.format(basename))
+        print('{0}/tiff/{1}.q2bz or .tiff already exists!'.format(tiff_path, basename))
     # Convert from .q2bz to .tiff
     if(not os.path.isfile('tiff/{0}.tiff'.format(filebasename))):
         print('Cropping, binning, and saving {0} as .tiff...'.format(f[:-4]+'.q2bz'))
@@ -48,9 +48,12 @@ def dm4_to_tiff(fullfilename,x1,y1,x2,y2,bin):
         im = Image.fromarray(editedImage)
         im.save('{0}/tiff/{1}.tiff'.format(tiff_path, filebasename))
     else:
-        print('{0}.tiff already exists!'.format(basename))
+        print('{0}/tiff/{1}.tiff already exists!'.format(tiff_path, basename))
     # Delete the .q2bz file to save hard drive space
-    os.remove(basename+'.q2bz')
+    try:
+        os.remove(basename+'.q2bz')
+    except:
+        pass
 
 def main():
     f   = sys.argv[1]

@@ -10,7 +10,8 @@ import numpy as np
 def binCrop(image, x1, y1, x2, y2,bin):
     """ This function crops and bins the image, loaded from a .q2bz file. """
 
-#first, the .q2bz file is read into 'f'
+    print("Variables: {0}  {1}  {2}  {3}  {4}".format(x1,x2,y1,y2,bin))
+    #first, the .q2bz file is read into 'f'
     f = bz2.BZ2File(image, 'r')
 
     #the first 3 lines of the file are read off as they are text information
@@ -28,9 +29,12 @@ def binCrop(image, x1, y1, x2, y2,bin):
     #a numpy array is created, but is initially 1D
     data = np.frombuffer(myF, dtype = float)
     #based on the xsize that is given in the image header, the 2d image array is created
+    print(data.shape)
     image = np.reshape(data, (-1,xsize))
     #the image is then cropped according to what was given as input
     cropped = image[y1:y2, x1:x2]    
+
+    print(xsize, ysize)
 
     #this next bit of code does the binning according to the given bin number
     #I did not have time to add error messages if the numbers are off, I would 

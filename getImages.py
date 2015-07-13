@@ -28,6 +28,7 @@ def main():
         x2 = int(f.readline().strip().split()[0])
         y2 = int(f.readline().strip().split()[0])
         bin = int(f.readline().strip().split()[0])
+    print('Using parameters:\nx1: {0}\nx2: {1}\ny1: {2}\ny2: {3}\nbin: {4}'.format(x1, x2, y1, y2, bin))
     for dirpath, dirnames, filenames in os.walk(path):
         for f in filenames:
             if('.dm4' in f):
